@@ -68,7 +68,7 @@ const page = async ({ params }: pageProps) => {
             <Image 
               fill
               referrerPolicy='no-referrer'
-              src={chatPartner.image}
+              src={chatPartner?.image}
               alt={`${chatPartner.name} profile picture`}
               className='rounded-full'
             />
@@ -87,8 +87,8 @@ const page = async ({ params }: pageProps) => {
       </div>
     </div>
 
-    <Messages sessionId={session.user.id} initialMessages={initialMessages} />
-    <ChatInput chatPartner={chatPartner} />
+    <Messages sessionId={session.user.id} initialMessages={initialMessages} sessionImg={session.user.image} chatPartner={chatPartner} />
+    <ChatInput chatId={chatId} chatPartner={chatPartner} />
   </div>
 }
 
