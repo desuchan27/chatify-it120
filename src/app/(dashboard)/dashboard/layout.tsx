@@ -32,7 +32,7 @@ const sidebarOptions: SidebarOption[] = [
     },
 ];
 
-const Layout: FC<LayoutProps> = async ({ children }) => {
+const Layout = async ({ children }: LayoutProps) => {
     const session = await getServerSession(authOptions);
     if (!session) notFound();
 
