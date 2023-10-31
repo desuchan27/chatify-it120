@@ -57,7 +57,14 @@ const page = async ({ params }: pageProps) => {
   }
 
   const chatPartnerId = user.id === userId1 ? userId2 : userId1 //to determine id which is yours
-  const chatPartner = (await db.get(`user:${chatPartnerId}`)) as User //to get the chat partner info
+
+  //to get the chat partner info
+  const chatPartnerRaw = (await fetchRedis(
+    'get',
+    `user:${chatPartnerId}`
+  ))as string
+  const chatPartner = JSON.parse(chatPartnerRaw) as User
+ 
   const initialMessages = await getChatMessages(chatId) //to get the messages
 
   return <div className='flex-1 justify-between flex flex-col h-full max-h-[1rem] max-h-[calc(100vh-6rem)]'>
